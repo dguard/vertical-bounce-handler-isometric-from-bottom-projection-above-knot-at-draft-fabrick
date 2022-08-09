@@ -1,0 +1,101 @@
+<html>
+<head>
+    <style>
+        .statement-at-front #scene {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="statement-area">
+        <div class="statement-at-front">
+            <div class="isometric">
+                <div class="bottom-projection">
+                    <canvas id="scene"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let canvas = document.querySelector('.statement-area').querySelector('.statement-at-front').querySelector('#scene')
+
+        let ctx = canvas.getContext('2d')
+
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+
+        if(window.devicePixelRatio > 1) {
+            canvas.width = canvas.clientWidth * 2
+            canvas.height = canvas.clientHeight * 2
+
+            ctx.scale(2, 2)
+        }
+
+        // kk
+        function DraftFabrikk() {
+
+        }
+        function Pencil() {
+
+        }
+
+        function DraftRectangleOnPaper() {
+
+        }
+
+        let draftFabrikk = new DraftFabrikk()
+        let knotAtRectangle = draftFabrikk.constructKnotAtRectangle()
+
+        let spawnedPointerBelongings = draftFabrikk.spawnPointerBelongingsAtRectangle(y, x, z, radius, d, f, frontRatio, debthScaleRatio, frontScaleRatio, profileScaleRatio)
+
+        let pencil = new Pencil()
+        pencil.remember(knotAtRectangle)
+
+        let knotAtRectangleAnother = draftFabrikk.constructKnotAtRectangle()
+        let knotAtRectangleRest = draftFabrikk.constructKnotAtRectangle()
+        let knotAtRectangleRemaining = draftFabrikk.constructKnotAtRectangle()
+
+        pencil.rememberSpawn(knotAtRectangle, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleAnother)
+        pencil.rememberSpawn(knotAtRectangleAnother, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleRest)
+        pencil.rememberSpawn(knotAtRectangleRest, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleRemaining)
+        pencil.rememberSpawn(knotAtRectangleRemaining, spawnedPointerBelongings)
+
+        let knot1 = draftFabrikk.constructKnot(y, x, z, radius, d, f, frontRatio, debthScaleRatio, profileScaleRatio, frontScaleRatio)
+        pencil.useKnot(knot1)
+
+        for(let i = 4; i < lines.length; i++) {
+            let knotAtRectConstructed
+
+            pencil.remember(knotAtRectConstructed)
+            pencil.rememberSpawn(knotAtRectConstructed, spawnedPointerBelongings)
+        }
+
+        // pencil.draw()
+        // knot1: draftFabrick.produceFrom(knot1)
+
+        // let spawnedPointerBelongingsAnother
+        // knot2: draftFabrick.constructKnotFromRect(knot1, y, x, z, radius, d, f, frontRatio, debthScaleRatio, profileScaleRatio, frontScaleRatio)
+
+        // pencil.useKnot(knot2)
+        // pencil.draw()
+
+        /* use sticked album at sequence */
+        /* knot3, knot4, knot5 repeated at different spawnedPointerBelongings, knot6 */
+
+        /* and starting use texture for item per knot */
+
+        pencil.draw()
+    </script>
+</body>
+</html>
